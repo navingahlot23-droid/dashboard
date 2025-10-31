@@ -30,7 +30,7 @@ function SidebarMenu({ collapsed }) {
                         }),
                       }}
                       >
-                    <MenuItem component={<NavLink to = '/'/>} className='border-y border-y-sky-900' icon={<MdOutlineHome className="text-xl" />}>
+                    <MenuItem component={<NavLink to = '/dashboard'/>} className='border-y border-y-sky-900' icon={<MdOutlineHome className="text-xl" />}>
                         {!collapsed && "Dashboard"}
                     </MenuItem>
 

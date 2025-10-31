@@ -12,7 +12,7 @@ function MainContent() {
         <main className="flex-1 overflow-auto p-6">
          <Routes>
             <Route index element = {<Dashboard/>}/>
-            <Route path="/" element = {<Dashboard/>}/>
+            <Route path="/dashboard" element = {<Dashboard/>}/>
             <Route path="/category"  element = {<Category/>}/>
             <Route path="/add-category"  element = {<AddCategory/>}/>
             <Route path="/product"  element = {<Product/>}/>
