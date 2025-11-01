@@ -4,7 +4,7 @@ import { useEffect } from "react";
 function Sidebar({ collapsed, setCollapsed  }) { 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 992.98) {
+      if (window.innerWidth < 992) {
         setCollapsed(true);
       } else {
         setCollapsed(false);
