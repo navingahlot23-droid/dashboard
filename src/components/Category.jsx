@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import CloseIcon from '@mui/icons-material/Close';
 import {
     GridRowModes,
     DataGrid,
@@ -18,12 +19,14 @@ import {
     Toolbar,
     ToolbarButton,
 } from '@mui/x-data-grid';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
 
 function EditToolbar(props) {
     const { setRows, setRowModesModel } = props;
 
     const handleClick = () => {
-        const id = randomId();
+        const id = Math.trunc(Math.random() * 10);
         setRows((oldRows) => [
             ...oldRows,
             { id, name: '', image: '', description: '', isNew: true },
@@ -45,9 +48,13 @@ function EditToolbar(props) {
     );
 }
 
+
+
 export default function Category() {
     const [rows, setRows] = React.useState([]);
     const [rowModesModel, setRowModesModel] = React.useState({});
+    const [openModal, setOpenModal] = React.useState(false);
+    const [selectedCategory, setSelectedCategory] = React.useState(null);
 
     useEffect(() => {
         axios.get('https://6904a8bf6b8dabde4964986c.mockapi.io/dashboard/Category')
@@ -68,7 +75,8 @@ export default function Category() {
     };
 
     const handleViewClick = (id) => () => {
-        setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+        setSelectedCategory(rows.find((row) => row.id === id));
+        setOpenModal(true);
     };
 
     const handleEditClick = (id) => () => {
@@ -113,18 +121,18 @@ export default function Category() {
             width: 150,
             renderCell: (params) => (
                 <img
-                  src={params.value}
-                  alt={params.row.name}
-                  style={{
-                    width: 100,
-                    height: 100,
-                    marginBlock: 10,
-                    objectFit: 'cover',
-                    borderRadius: 8,
-                    objectPosition: 'top'
-                  }}
+                    src={params.value}
+                    alt={params.row.name}
+                    style={{
+                        width: 100,
+                        height: 100,
+                        marginBlock: 10,
+                        objectFit: 'cover',
+                        borderRadius: 8,
+                        objectPosition: 'top'
+                    }}
                 />
-              ),
+            ),
             editable: true,
         },
         {
@@ -218,6 +226,24 @@ export default function Category() {
                 showToolbar
                 getRowHeight={() => 'auto'}
             />
+            {/* 👁️ Category Info Modal */}
+            <Modal open={openModal} onClose={() => { setOpenModal(false) }}>
+                <Box className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-white p-4 rounded-xl w-2xs md:w-lg">
+                    {selectedCategory && (
+                        <div className='md:flex md:flex-nowrap md:gap-8 relative'>
+                            <div className='absolute w-8 h-8 text-center text-lg  rounded-full bg-amber-50 -top-8.5 -right-5.5 cursor-pointer' onClick={() => { setOpenModal(false) }}><CloseIcon/></div>
+                            <div className='img-box'>
+                                <img className='mb-3 md:w-64 w-full object-cover object-top rounded-xl' src={selectedCategory.image} />
+                            </div>
+                            <div className='content-box'>
+                                <Typography variant='h5'className='mb-3!important'>{selectedCategory.name}</Typography>
+                                <Typography variant='body1' gutterTop>{selectedCategory.description}</Typography>
+                            </div>
+                        </div>
+                    )}
+                </Box>
+            </Modal>
         </Box>
     );
 }
+
