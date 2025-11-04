@@ -66,7 +66,7 @@ export default function Login() {
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             value={values.username}
-                                            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600 sm:text-sm/6"
                                         />
                                         <p className="text-sm text-red-800 mb-0"> {errors.username && touched.username && errors.username}</p>
                                     </div>
@@ -86,7 +86,7 @@ export default function Login() {
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             value={values.password}
-                                            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600 sm:text-sm/6"
                                         />
                                         <p className="text-sm text-red-800 mb-0">{errors.password && touched.password && errors.password}</p>
                                     </div>
@@ -95,7 +95,7 @@ export default function Login() {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="flex w-full justify-center rounded-md bg-sky-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-sky-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                        className="cursor-pointer flex w-full justify-center rounded-md bg-sky-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-sky-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
                                     >
                                         Sign in
                                     </button>
