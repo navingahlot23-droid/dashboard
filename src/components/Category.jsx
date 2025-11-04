@@ -231,13 +231,13 @@ export default function Category() {
                 <Box className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-white p-4 rounded-xl w-2xs md:w-lg">
                     {selectedCategory && (
                         <div className='md:flex md:flex-nowrap md:gap-8 relative'>
-                            <div className='absolute w-8 h-8 text-center text-lg  rounded-full bg-amber-50 -top-8.5 -right-5.5 cursor-pointer' onClick={() => { setOpenModal(false) }}><CloseIcon/></div>
+                            <div className='absolute w-8 h-8 text-center text-lg  rounded-full bg-white md:-top-2.5 md:-right-2.5 -top-8.5 -right-5.5 cursor-pointer' onClick={() => { setOpenModal(false) }}><CloseIcon/></div>
                             <div className='img-box'>
-                                <img className='mb-3 md:w-64 w-full object-cover object-top rounded-xl' src={selectedCategory.image} />
+                                <img className='mb-4 md:mb-0 md:w-48 w-full object-cover object-top rounded-xl' src={selectedCategory.image} />
                             </div>
                             <div className='content-box'>
-                                <Typography variant='h5'className='mb-3!important'>{selectedCategory.name}</Typography>
-                                <Typography variant='body1' gutterTop>{selectedCategory.description}</Typography>
+                                <h3 className='mb-1 text-md font-semibold md:text-lg'>{selectedCategory.name}</h3>
+                                <p className='text-sm mb-0'>{selectedCategory.description}</p>
                             </div>
                         </div>
                     )}
