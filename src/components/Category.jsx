@@ -20,26 +20,19 @@ import {
     ToolbarButton,
 } from '@mui/x-data-grid';
 import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
 function EditToolbar(props) {
     const { setRows, setRowModesModel } = props;
+    const navigate = useNavigate();
 
     const handleClick = () => {
-        const id = Math.trunc(Math.random() * 10);
-        setRows((oldRows) => [
-            ...oldRows,
-            { id, name: '', image: '', description: '', isNew: true },
-        ]);
-        setRowModesModel((oldModel) => ({
-            ...oldModel,
-            [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
-        }));
+      navigate('/add-category')
     };
 
     return (
         <Toolbar>
-            <Tooltip title="Add record">
+            <Tooltip title="Add Category">
                 <ToolbarButton onClick={handleClick}>
                     <AddIcon fontSize="small" />
                 </ToolbarButton>

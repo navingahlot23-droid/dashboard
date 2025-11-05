@@ -40,6 +40,7 @@ export default function Login() {
                                 axios.post("https://dummyjson.com/auth/login", values).
                                     then(response => navigate('/dashboard')).
                                     catch(err => setFormError(err.response.data.message))
+                                    setSubmitting(false);
                             }, 400)
                         }}
                     >

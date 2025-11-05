@@ -1,7 +1,9 @@
 import { Formik } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
 
 function AddCategory() {
     const SignupSchema = Yup.object().shape({
@@ -13,7 +15,8 @@ function AddCategory() {
             .required('Enter Category Description')
     });
 
-    const navigate = useNavigate();
+   const [formError, setFormError] = useState("");
+   const [formSuccess, setFormSuccess] = useState("");
     return (
         <>
             <h1 className="text-2xl font-bold mb-1 text-cyan-700">Add Category</h1>
@@ -22,15 +25,30 @@ function AddCategory() {
                 <Formik
                     initialValues={{ 'categoryName': '', 'categoryImage': '', 'categoryDescription': '' }}
                     validationSchema={SignupSchema}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting, resetForm }) => {
                     setTimeout(() => {
                         axios.post("https://6904a8bf6b8dabde4964986c.mockapi.io/dashboard/Category", {
                             name: values.categoryName,
                             image: values.categoryImage,
                             description: values.categoryDescription,
-                        }).
-                        then(response =>  {navigate("/category");}).
-                        catch(err => console.error("Error adding category:", err))
+                        })
+                        .then(response => {
+                            setFormSuccess("Category Added Successfully", response);
+                            
+                            // hide message after 2 seconds
+                            setTimeout(() => {
+                              setFormSuccess("");
+                            }, 2000);
+                          }).
+                        catch(err => {
+                            setFormError("Error Adding Category", err);
+                             // hide message after 2 seconds
+                             setTimeout(() => {
+                                setFormError("");
+                              }, 3000);
+                        })
+                        setSubmitting(false);
+                        resetForm();
                     }, 400)
                 }}
                 >
@@ -44,6 +62,11 @@ function AddCategory() {
                         isSubmitting
                     }) => (
                         <form onSubmit={handleSubmit}>
+
+                            {formError && <p className="mb-4 flex align-center text-sm font-semibold p-1.5 px-2 rounded-sm text-red-600 bg-red-200 border-red-400 border"><CloseIcon  className="mr-2 p-1 bg-red-600 rounded-full text-white w-8 h-8"/>{formError}</p>}
+
+                            {formSuccess && <p className="mb-4 text-sm flex align-center font-semibold py-1.5 px-2 rounded-sm text-green-700 bg-green-200 border-green-400 border"><CheckIcon className="mr-2 p-1 bg-green-800 rounded-full text-white"/> {formSuccess}</p>}
+
                             <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
                                 <div>
                                     <label htmlFor="categoryName" className="block text-sm/6 font-medium text-gray-900">Category Name</label>
