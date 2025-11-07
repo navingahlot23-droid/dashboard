@@ -1,8 +1,14 @@
 import { MdDehaze } from "react-icons/md";
 import logo from "../assets/logo.svg";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 function Header({ collapsed, setCollapsed }) {
+  const navigate = useNavigate();
+  const signout = () => {
+    sessionStorage.removeItem("token");
+    navigate('/login');
+  }
   return (
     <>
       <div className="header-box flex justify-between items-center bg-sky-950 p-4 sticky top-0 z-10">
@@ -24,19 +30,12 @@ function Header({ collapsed, setCollapsed }) {
               transition
               className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
               <div className="py-1">
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden">
-                    Account settings
-                  </a>
-                </MenuItem>
                   <MenuItem>
-                    <Link
-                      to="/login"
-                      className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden">
+                    <MenuButton
+                      onClick={signout}
+                      className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden cursor-pointer">
                       Sign out
-                    </Link>
+                    </MenuButton>
                   </MenuItem>
               </div>
             </MenuItems>

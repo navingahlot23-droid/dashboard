@@ -2,25 +2,27 @@ import React, { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
+import { useLocation } from "react-router-dom";
 
 function Layout() {
     const [collapsed, setCollapsed] = useState(false);
+    const location = useLocation();
+    const isLoginPage = location.pathname === "/login";
     return (
         <>
-                <div className="h-screen flex flex-col bg-gray-100">
-                    {/* ✅ Header stays outside and sticky */}
+            <div className="h-screen flex flex-col">
+                {!isLoginPage && (
                     <Header collapsed={collapsed} setCollapsed={setCollapsed} />
+                )}
 
-                    {/* ✅ Sidebar + Main content below header */}
-                    <div className="flex flex-1 overflow-hidden">
-                        <Sidebar
-                            collapsed={collapsed} setCollapsed={setCollapsed}
-                        />
+                <div className="flex flex-1 overflow-hidden">
+                    {!isLoginPage && (
+                        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+                    )}
 
-                        {/* Scrollable content */}
-                        <MainContent />
-                    </div>
+                    <MainContent />
                 </div>
+            </div>
         </>
     )
 }

@@ -38,7 +38,10 @@ export default function Login() {
                         onSubmit={(values, { setSubmitting }) => {
                             setTimeout(() => {
                                 axios.post("https://dummyjson.com/auth/login", values).
-                                    then(response => navigate('/dashboard')).
+                                    then(response => {
+                                        sessionStorage.setItem("token", response.data.accessToken);
+                                        navigate('/dashboard')
+                                    }).
                                     catch(err => setFormError(err.response.data.message))
                                     setSubmitting(false);
                             }, 400)
