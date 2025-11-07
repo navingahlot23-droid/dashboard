@@ -247,8 +247,8 @@ export default function Product() {
                     <Box className="absolute top-0 left-0 lg:top-1/2 lg:left-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%] bg-white p-4 lg:rounded-xl lg:w-3xl  h-full w-full overflow-y-scroll">
                         {selectedProduct && (
                             <div className='relative'>
-                                <div className='absolute w-8 h-8 text-center text-lg  rounded-full bg-white md:-top-2.5 md:-right-2.5 -top-8.5 -right-5.5 cursor-pointer' onClick={() => { setOpenEditModal(false) }}><CloseIcon /></div>
-                                <h3 className='text-xl font-bold mb-8'>Update Product - {selectedProduct.name}</h3>
+                                <div className='absolute w-8 h-8 text-center text-lg  rounded-full bg-white md:-top-2.5 md:-right-2.5 -top-2.5 -right-2.5 cursor-pointer' onClick={() => { setOpenEditModal(false) }}><CloseIcon /></div>
+                                <h3 className='text-xl font-bold mb-8 pr-4.5'>Update Product - {selectedProduct.name}</h3>
                                 <div className="relative bg-white p-6 border border-sky-700 rounded-md">
                                     <p className="mb-0 absolute text-sky-700 bg-white p-1 -top-5 left-2 font-semibold">Product Information</p>
                                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">

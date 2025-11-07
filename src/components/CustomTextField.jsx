@@ -13,6 +13,7 @@ const CustomTextField = (props) => {
           '& fieldset': { borderColor: '#99a1af' }, // gray-400
           '&:hover fieldset': { borderColor: '#0ea5e9' }, // sky-500
           '&.Mui-focused fieldset': { borderColor: '#0ea5e9' },
+          '& .MuiInputBase-inputMultiline' : {padding : '0'}
         },
         '& .MuiInputLabel-root': {
             fontFamily :'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
